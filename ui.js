@@ -1,5 +1,3 @@
-// ui.js
-
 import { getValues, calculAmortissement } from './calculs.js';
 
 let myChart; // Variable pour stocker l'instance du graphique
@@ -51,8 +49,9 @@ function remplirTableau(amortissement) {
 
   document.getElementById("inputMensualite").innerHTML = html;
 
-  // Appeler la fonction pour dessiner le graphique
+  // Appeler la fonction pour dessiner le graphique et le graphique circulaire
   dessinerGraphique(amortissement);
+  dessinerGraphiqueCirculaire(totalCapitalAmorti, totalInteret);
 }
 
 function dessinerGraphique(amortissement) {
@@ -110,6 +109,39 @@ function dessinerGraphique(amortissement) {
             display: true,
             text: 'Montant'
           }
+        }
+      }
+    }
+  });
+}
+
+function dessinerGraphiqueCirculaire(totalCapitalAmorti, totalInteret) {
+  const ctx = document.getElementById('myPieChart').getContext('2d');
+
+  // Définir les données pour le graphique circulaire
+  const data = {
+    labels: ['Capital Amorti', 'Intérêts'],
+    datasets: [{
+      data: [totalCapitalAmorti, totalInteret],
+      backgroundColor: ['rgba(75, 192, 192, 0.5)', 'rgba(255, 99, 132, 0.5)'],
+      borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+      borderWidth: 1
+    }]
+  };
+
+  // Création du graphique circulaire
+  new Chart(ctx, {
+    type: 'pie',
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'Répartition des paiements'
         }
       }
     }

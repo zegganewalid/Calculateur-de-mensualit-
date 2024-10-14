@@ -63,3 +63,11 @@ body {
     color: #333;
   }
   
+  #myPieChart {
+    width: 300px; /* Largeur du graphique */
+    height: 300px; /* Hauteur du graphique */
+    max-width: 500px; /* Largeur maximale */
+    max-height: 500px; /* Hauteur maximale */
+    margin: 0 auto; /* Centrer le graphique */
+  }
+  
